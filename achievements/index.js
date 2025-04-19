@@ -156,9 +156,18 @@ module.exports = function ({ client, dispatch }) {
    * Handles the achievements message.
    */
   const handleAchievementsMessage = async () => {
+    const room = dispatch.getState('room')
+
+    if (!room) {
+      return application.consoleMessage({
+        message: 'You must be in a room to use this plugin.',
+        type: 'error'
+      })
+    }
+
     for (let i = 0; i < achievements.length; i++) {
       if (dispatch.connected) {
-        dispatch.sendRemoteMessage(`%xt%o%zs%-1%${achievements[i]}%9999999%1%`)
+        dispatch.sendRemoteMessage(`%xt%o%zs%${room}%${achievements[i]}%9999999%1%`)
         await dispatch.wait(110)
       }
     }

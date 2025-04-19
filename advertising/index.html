@@ -269,7 +269,7 @@
         }
 
         try {
-          const packet = `<msg t="sys"><body action="pubMsg" r="${room}"><txt><![CDATA[${messageToSend}%9]]></txt></body></msg>`
+          const packet = `<msg t="sys"><body action="pubMsg" r="${room}"><txt><![CDATA[${messageToSend}%0]]></txt></body></msg>`
           dispatch.sendRemoteMessage(packet)
         } catch (error) {
           console.error("Error sending message:", error)
